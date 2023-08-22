@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import Node from './Node/Node';
-import {dijkstra, getNodesInShortestPathOrder} from '../algorithms/dijkstra';
+import {dijkstra, getNodesInShortestPathOrder} from '../algorithms/dijkstra';//dijkstra import
+import { astar } from '../algorithms/astar';                                 //astar import  
+import { bfs } from '../algorithms/bfs';                                     //bfs import
+
 
 import './PathfindingVisualizer.css';
 
@@ -43,16 +46,32 @@ export default class PathfindingVisualizer extends Component {
       if (i === visitedNodesInOrder.length) {
         setTimeout(() => {
           this.animateShortestPath(nodesInShortestPathOrder);
-        }, 10 * i);
+        }, 15 * i); // Adjust the delay here
         return;
       }
       setTimeout(() => {
         const node = visitedNodesInOrder[i];
         document.getElementById(`node-${node.row}-${node.col}`).className =
           'node node-visited';
-      }, 10 * i);
+      }, 15 * i); // Adjust the delay here
     }
   }
+  animateBFS(visitedNodesInOrder, nodesInShortestPathOrder) {
+    const delay = 30; // Adjust the delay here
+  
+    for (let i = 0; i < visitedNodesInOrder.length; i++) {
+      setTimeout(() => {
+        const node = visitedNodesInOrder[i];
+        document.getElementById(`node-${node.row}-${node.col}`).className =
+          'node node-visited';
+      }, delay * i);
+    }
+  
+    setTimeout(() => {
+      this.animateShortestPath(nodesInShortestPathOrder);
+    }, delay * visitedNodesInOrder.length);
+  }
+  
 
   animateShortestPath(nodesInShortestPathOrder) {
     for (let i = 0; i < nodesInShortestPathOrder.length; i++) {
@@ -63,7 +82,7 @@ export default class PathfindingVisualizer extends Component {
       }, 50 * i);
     }
   }
-
+  //Dijkstra function
   visualizeDijkstra() {
     const {grid} = this.state;
     const startNode = grid[START_NODE_ROW][START_NODE_COL];
@@ -72,12 +91,40 @@ export default class PathfindingVisualizer extends Component {
     const nodesInShortestPathOrder = getNodesInShortestPathOrder(finishNode);
     this.animateDijkstra(visitedNodesInOrder, nodesInShortestPathOrder);
   }
+  //A*  function
+  visualizeAStar() {
+    const { grid } = this.state;
+    const startNode = grid[START_NODE_ROW][START_NODE_COL];
+    const finishNode = grid[FINISH_NODE_ROW][FINISH_NODE_COL];
+    const visitedNodesInOrder = astar(grid, startNode, finishNode); // Call A* algorithm
+    const nodesInShortestPathOrder = getNodesInShortestPathOrder(finishNode);
+    this.animateDijkstra(visitedNodesInOrder, nodesInShortestPathOrder);
+  }
+  //BFS function
+  visualizeBFS() {
+    const { grid } = this.state;
+    const startNode = grid[START_NODE_ROW][START_NODE_COL];
+    const finishNode = grid[FINISH_NODE_ROW][FINISH_NODE_COL];
+    const visitedNodesInOrder = bfs(grid, startNode, finishNode); // Call BFS algorithm
+    const nodesInShortestPathOrder = getNodesInShortestPathOrder(finishNode);
+    this.animateBFS(visitedNodesInOrder, nodesInShortestPathOrder);
+  }
+  
+  
 
   render() {
     const {grid, mouseIsPressed} = this.state;
 
     return (
-      <>
+      <> 
+        <button onClick={() => this.visualizeBFS()}>
+          Visualize BFS Algorithm
+        </button>
+      
+        <button onClick={() => this.visualizeAStar()}>
+          Visualize A* Algorithm
+        </button>
+
         <button onClick={() => this.visualizeDijkstra()}>
           Visualize Dijkstra's Algorithm
         </button>
