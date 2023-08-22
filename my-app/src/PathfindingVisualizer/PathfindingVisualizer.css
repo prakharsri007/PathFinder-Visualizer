@@ -1,3 +1,19 @@
 .grid {
     margin: 100px 0 0;
   }
+
+button{
+  background-color: lightskyblue;
+}
+
+ .row {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 10px;
+ }
+
+ .hidden1,.hidden2,.hidden3{
+  display: none;
+  text-align: center;
+ }
+ 
