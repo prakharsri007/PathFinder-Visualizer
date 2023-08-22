@@ -93,45 +93,12 @@ export default class PathfindingVisualizer extends Component {
     const nodesInShortestPathOrder = getNodesInShortestPathOrder(finishNode);
     this.animateDijkstra(visitedNodesInOrder, nodesInShortestPathOrder);
   }
-  //A*  function
-  visualizeAStar() {
-    const tardiv = document.getElementsByClassName("hidden2")[0];
-    tardiv.style.display = "block";
-    const { grid } = this.state;
-    const startNode = grid[START_NODE_ROW][START_NODE_COL];
-    const finishNode = grid[FINISH_NODE_ROW][FINISH_NODE_COL];
-    const visitedNodesInOrder = astar(grid, startNode, finishNode); // Call A* algorithm
-    const nodesInShortestPathOrder = getNodesInShortestPathOrder(finishNode);
-    this.animateDijkstra(visitedNodesInOrder, nodesInShortestPathOrder);
-  }
-  //BFS function
-  visualizeBFS() {
-    const tardiv = document.getElementsByClassName("hidden3")[0];
-    tardiv.style.display = "block";
-    const { grid } = this.state;
-    const startNode = grid[START_NODE_ROW][START_NODE_COL];
-    const finishNode = grid[FINISH_NODE_ROW][FINISH_NODE_COL];
-    const visitedNodesInOrder = bfs(grid, startNode, finishNode); // Call BFS algorithm
-    const nodesInShortestPathOrder = getNodesInShortestPathOrder(finishNode);
-    this.animateBFS(visitedNodesInOrder, nodesInShortestPathOrder);
-  }
-  
-  
 
   render() {
     const {grid, mouseIsPressed} = this.state;
 
     return (
       <>
-       <div className="row">
-       <button onClick={() => this.visualizeBFS()}>
-          Visualize BFS Algorithm
-        </button>
-      
-        <button onClick={() => this.visualizeAStar()}>
-          Visualize A* Algorithm
-        </button>
-
         <button onClick={() => this.visualizeDijkstra()}>
           Visualize Dijkstra's Algorithm
         </button>
