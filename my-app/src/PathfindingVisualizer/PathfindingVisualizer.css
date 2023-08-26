@@ -4,6 +4,16 @@
 
 button{
   background-color: lightskyblue;
+  height: 100px;
+  width: 250px;
+  font-family:  'Times New Roman';
+  color: black;
+  font-weight: bold;
+  font-size: 19px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+  border: none;
+  cursor: pointer;
 }
 
  .row {
@@ -17,3 +27,18 @@ button{
   text-align: center;
  }
  
+ .algo_title{
+  font-family: 'Georgia';
+  font-size: 17px;
+  font-weight: bold;
+  margin-bottom: 0.1px;
+  margin-top: 40px;
+ }
+
+ .newtry{
+  height: 50px;
+  width: 300px;
+  background-color: bisque;
+  margin-top: 15px;
+  margin-bottom: 0;
+ }

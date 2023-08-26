@@ -19,6 +19,12 @@ export default class PathfindingVisualizer extends Component {
       grid: [],
       mouseIsPressed: false,
       selectedAlgorithm: null,
+      bfsVisualized: false,
+      bfsRunning: false, 
+      astarVisualized: false,
+      astarRunning: false,
+      dijkstraVisualized: false,
+      dijkstraRunning: false,
     };
   }
 
@@ -56,22 +62,26 @@ export default class PathfindingVisualizer extends Component {
   }
 
   animateDijkstra(visitedNodesInOrder, nodesInShortestPathOrder) {
+    const delay = 30; // Adjust the delay here
+    this.setState({ dijkstraRunning: true });
     for (let i = 0; i <= visitedNodesInOrder.length; i++) {
       if (i === visitedNodesInOrder.length) {
         setTimeout(() => {
+          this.setState({ dijkstraRunning: false, dijkstraVisualized: true });
           this.animateShortestPath(nodesInShortestPathOrder);
-        }, 15 * i); // Adjust the delay here
+        }, delay * i); // Adjust the delay here
         return;
       }
       setTimeout(() => {
         const node = visitedNodesInOrder[i];
         document.getElementById(`node-${node.row}-${node.col}`).className =
           'node node-visited';
-      }, 15 * i); // Adjust the delay here
+      }, delay * i); // Adjust the delay here
     }
   }
   animateBFS(visitedNodesInOrder, nodesInShortestPathOrder) {
     const delay = 30; // Adjust the delay here
+    this.setState({ bfsRunning: true });
   
     for (let i = 0; i < visitedNodesInOrder.length; i++) {
       setTimeout(() => {
@@ -82,6 +92,7 @@ export default class PathfindingVisualizer extends Component {
     }
   
     setTimeout(() => {
+      this.setState({ bfsRunning: false, bfsVisualized: true });
       this.animateShortestPath(nodesInShortestPathOrder);
     }, delay * visitedNodesInOrder.length);
   }
@@ -98,12 +109,6 @@ export default class PathfindingVisualizer extends Component {
   }
   //Dijkstra function
   visualizeDijkstra() {
-    // const tardiv = document.getElementsByClassName("hidden1")[0];
-    // tardiv.style.display = "block";
-    // const tardiv2 = document.getElementsByClassName("hidden2")[0];
-    // tardiv2.style.display = "none";
-    // const tardiv3 = document.getElementsByClassName("hidden3")[0];
-    // tardiv3.style.display = "none";
     const {grid} = this.state;
     const startNode = grid[START_NODE_ROW][START_NODE_COL];
     const finishNode = grid[FINISH_NODE_ROW][FINISH_NODE_COL];
@@ -113,12 +118,6 @@ export default class PathfindingVisualizer extends Component {
   }
   //A*  function
   visualizeAStar() {
-    // const tardiv = document.getElementsByClassName("hidden2")[0];
-    // tardiv.style.display = "block";
-    // const tardiv3 = document.getElementsByClassName("hidden3")[0];
-    // tardiv3.style.display = "none";
-    // const tardiv1 = document.getElementsByClassName("hidden1")[0];
-    // tardiv1.style.display = "none";
     const { grid } = this.state;
     const startNode = grid[START_NODE_ROW][START_NODE_COL];
     const finishNode = grid[FINISH_NODE_ROW][FINISH_NODE_COL];
@@ -128,12 +127,6 @@ export default class PathfindingVisualizer extends Component {
   }
   //BFS function
   visualizeBFS() {
-    // const tardiv = document.getElementsByClassName("hidden3")[0];
-    // tardiv.style.display = "block";
-    // const tardiv2 = document.getElementsByClassName("hidden2")[0];
-    // tardiv2.style.display = "none";
-    // const tardiv1 = document.getElementsByClassName("hidden1")[0];
-    // tardiv1.style.display = "none";
     const { grid } = this.state;
     const startNode = grid[START_NODE_ROW][START_NODE_COL];
     const finishNode = grid[FINISH_NODE_ROW][FINISH_NODE_COL];
@@ -144,15 +137,15 @@ export default class PathfindingVisualizer extends Component {
   
 
   render() {
-    const {grid, mouseIsPressed, selectedAlgorithm} = this.state;
+    const {grid, mouseIsPressed, selectedAlgorithm, bfsVisualized, bfsRunning, astarVisualized, astarRunning, dijkstraVisualized, dijkstraRunning} = this.state;
 
     let visualization;
     if (selectedAlgorithm === 'dijkstra') {
-      visualization = <p>Visualizing the Dijkstra's algorithm</p>;
+      visualization = <p class='algo_title'>Visualizing the Dijkstra's algorithm</p>;
     } else if (selectedAlgorithm === 'astar') {
-      visualization = <p>Visualizing the A* algorithm</p>;
+      visualization = <p class='algo_title'>Visualizing the A* algorithm</p>;
     } else if (selectedAlgorithm === 'bfs') {
-      visualization = <p>Visualizing the BFS algorithm</p>;
+      visualization = <p class='algo_title'>Visualizing the BFS algorithm</p>;
     }
 
     return (
@@ -172,6 +165,25 @@ export default class PathfindingVisualizer extends Component {
       </div>
 
       {visualization}
+
+      {bfsVisualized && !bfsRunning && (
+        <div>
+          <button class="newtry" onClick={() => window.location.reload()}>Try different algorithm</button>
+        </div>
+      )}
+
+      {astarVisualized && !astarRunning && (
+        <div>
+          <button class="newtry" onClick={() => window.location.reload()}>Try different algorithm</button>
+        </div>
+      )}
+
+      {dijkstraVisualized && !dijkstraRunning && (
+        <div>
+          <button class="newtry" onClick={() => window.location.reload()}>Try different algorithm</button>
+        </div>
+      )}
+     
         
       {/* <div className="hidden1">
         <p>Visualizing the Dijkstra's algorithm</p>
