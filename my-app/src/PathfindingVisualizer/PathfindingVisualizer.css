@@ -30,10 +30,10 @@ button{
  
  .algo_title{
   font-family: 'Georgia';
-  font-size: 17px;
+  font-size: 23px;
   font-weight: bold;
   margin-bottom: 0.1px;
-  margin-top: 40px;
+  margin-top: 18px;
  }
 
  .newtry{
@@ -89,4 +89,16 @@ button{
 
 .node-path-square{
   background-color: yellow;
+}
+
+.desc{
+  margin-top: 18px;
+  margin-left: 5%;
+  margin-right: 5%;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 23px;
+  font-weight: 500;
+  display: flex;
+  align-items: left;
+  justify-content: left;
 }

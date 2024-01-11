@@ -12,6 +12,7 @@ const START_NODE_COL = 15;
 const FINISH_NODE_ROW = 10;
 const FINISH_NODE_COL = 35;
 
+
 export default class PathfindingVisualizer extends Component {
   constructor() {
     super();
@@ -25,9 +26,11 @@ export default class PathfindingVisualizer extends Component {
       astarRunning: false,
       dijkstraVisualized: false,
       dijkstraRunning: false,
+      showButtons: true,
+      setShowButtons: true,
     };
   }
-
+  
   componentDidMount() {
     const grid = getInitialGrid();
     this.setState({grid});
@@ -77,14 +80,14 @@ export default class PathfindingVisualizer extends Component {
           this.setState({
             dijkstraTimeTaken: timeTaken.toFixed(2) + ' seconds', // Update state with time taken in seconds
           });
-        }, delay * i); // Adjust the delay here
+        }, delay * i * 4); // Adjust the delay here
         return;
       }
       setTimeout(() => {
         const node = visitedNodesInOrder[i];
         document.getElementById(`node-${node.row}-${node.col}`).className =
           'node node-visited';
-      }, delay * i); // Adjust the delay here
+      }, delay * i * 4); // Adjust the delay here
     }
     const endTime = performance.now(); // Record end time
     const timeTaken = (endTime - startTime) / 1000; // Convert milliseconds to seconds
@@ -105,7 +108,7 @@ export default class PathfindingVisualizer extends Component {
         const node = visitedNodesInOrder[i];
         document.getElementById(`node-${node.row}-${node.col}`).className =
           'node node-visited';
-      }, delay * i);
+      }, delay * i * 4);
     }
   
     setTimeout(() => {
@@ -120,7 +123,7 @@ export default class PathfindingVisualizer extends Component {
         bfsTimeTaken: timeTaken.toFixed(2) + ' seconds', // Update state with time taken in seconds
       });
       this.animateShortestPath(nodesInShortestPathOrder);
-    }, delay * visitedNodesInOrder.length);
+    }, delay * visitedNodesInOrder.length * 4);
   }
   
 
@@ -132,7 +135,7 @@ export default class PathfindingVisualizer extends Component {
         const node = nodesInShortestPathOrder[i];
         document.getElementById(`node-${node.row}-${node.col}`).className =
           'node node-shortest-path';
-      }, 50 * i);
+      }, 50 * i * 4);
     }
   }
   //Dijkstra function
@@ -177,12 +180,15 @@ export default class PathfindingVisualizer extends Component {
       dijkstraRunning, 
       bfsTimeTaken, 
       astarTimeTaken, 
-      dijkstraTimeTaken 
+      dijkstraTimeTaken,
+      showButtons,
+      setShowButtons
     } = this.state;
   
-    let visualization;
+    let visualization, description;
     if (selectedAlgorithm === 'dijkstra') {
       visualization = <p className='algo_title'>Visualizing the Dijkstra's algorithm</p>;
+      description = <div className='desc'>The algorithm starts from the start node and considers the neighboring nodes, calculating the cost of reaching them from the start node. The algorithm selects the neighboring node with the lowest cost and adds it to the list of visited nodes. The process continues until the destination node is reached.</div>
     } else if (selectedAlgorithm === 'astar') {
       visualization = <p className='algo_title'>Visualizing the A* algorithm</p>;
     } else if (selectedAlgorithm === 'bfs') {
@@ -193,20 +199,38 @@ export default class PathfindingVisualizer extends Component {
       <>
       
         {/* Algorithm selection buttons */}
+        {showButtons && setShowButtons && (
         <div className="row">
-          <button onClick={() => this.handleAlgorithmSelection('bfs')}>
+          <button onClick={() => {
+            this.setState({
+              showButtons: false,
+              setShowButtons: false
+            });
+            this.handleAlgorithmSelection('bfs');}}>
             Visualize BFS Algorithm
           </button>
-          <button onClick={() => this.handleAlgorithmSelection('astar')}>
+          <button onClick={() => {
+             this.setState({
+              showButtons: false,
+              setShowButtons: false
+            });
+            this.handleAlgorithmSelection('astar');}}>
             Visualize A* Algorithm
           </button>
-          <button onClick={() => this.handleAlgorithmSelection('dijkstra')}>
+          <button onClick={() => {
+             this.setState({
+              showButtons: false,
+              setShowButtons: false
+            });
+            this.handleAlgorithmSelection('dijkstra');}}>
             Visualize Dijkstra's Algorithm
           </button>
         </div>
+        )}
   
         {/* Algorithm visualization information */}
         {visualization}
+        {description}
   
         {/* Display time taken for each algorithm */}
         {bfsVisualized && !bfsRunning && (
