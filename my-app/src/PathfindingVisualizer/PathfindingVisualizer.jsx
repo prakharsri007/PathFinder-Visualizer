@@ -162,7 +162,7 @@ export default class PathfindingVisualizer extends Component {
     const nodesInShortestPathOrder = getNodesInShortestPathOrder(finishNode);
     this.animateBFS(visitedNodesInOrder, nodesInShortestPathOrder);
   }
-  
+ 
 
   render() {
     const { 
@@ -191,6 +191,7 @@ export default class PathfindingVisualizer extends Component {
   
     return (
       <>
+      
         {/* Algorithm selection buttons */}
         <div className="row">
           <button onClick={() => this.handleAlgorithmSelection('bfs')}>
@@ -210,24 +211,47 @@ export default class PathfindingVisualizer extends Component {
         {/* Display time taken for each algorithm */}
         {bfsVisualized && !bfsRunning && (
           <div>
+            <p style={{ fontFamily:'sans-serif', fontSize: '20px', fontWeight: 'bold' }}>Time taken: {bfsTimeTaken} </p>
             <button className="newtry" onClick={() => window.location.reload()}>Try different algorithm</button>
-            <p style={{ fontSize: 'larger', fontWeight: 'bold' }}>Time taken by BFS: {bfsTimeTaken} </p>
           </div>
         )}
   
         {astarVisualized && !astarRunning && (
           <div>
+            <p style={{ fontFamily:'sans-serif',fontSize: '20px', fontWeight: 'bold'}}>Time taken: {astarTimeTaken}</p>
             <button className="newtry" onClick={() => window.location.reload()}>Try different algorithm</button>
-            <p style={{ fontSize: 'larger', fontWeight: 'bold' }}>Time taken by A*: {astarTimeTaken}</p>
           </div>
         )}
   
         {dijkstraVisualized && !dijkstraRunning && (
           <div>
+            <p style={{ fontFamily:'sans-serif',fontSize: '20px', fontWeight: 'bold' }}>Time taken: {dijkstraTimeTaken}</p>
             <button className="newtry" onClick={() => window.location.reload()}>Try different algorithm</button>
-            <p style={{ fontSize: 'larger', fontWeight: 'bold' }}>Time taken by Dijkstra's: {dijkstraTimeTaken}</p>
           </div>
         )}
+
+        {/* <div className="blockage">
+          <p style={{ fontFamily: 'serif', fontWeight: 'bold', fontSize: '21px'}}>Place Blockages between Start Node and End Node to visualize the working. Then, press the algorithm you want to visualize.</p>
+        </div> */}
+
+        <div className="node-legend">
+          <span className="node-legend-item">
+            <span className="node-square node-start-square"></span>
+              Start Node
+            </span>
+          <span className="node-legend-item">
+            <span className="node-square node-end-square"></span>
+              End Node
+            </span>
+            <span className="node-legend-item">
+            <span className="node-square node-block-square"></span>
+              Blockages
+            </span>
+            <span className="node-legend-item">
+            <span className="node-square node-path-square"></span>
+              Final Path
+            </span>
+        </div>
   
         {/* Grid for visualization */}
         <div className="grid">
