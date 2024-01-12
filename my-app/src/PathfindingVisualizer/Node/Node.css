@@ -77,3 +77,9 @@
       background-color: rgb(255, 254, 106);
     }
   }
+
+  .node-normal.node-route { /* Target regular nodes on the route */
+    background-color: yellow;
+  }
+
+ 

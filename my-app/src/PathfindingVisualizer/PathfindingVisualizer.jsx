@@ -191,8 +191,22 @@ export default class PathfindingVisualizer extends Component {
       description = <div className='desc'>The algorithm starts from the start node and considers the neighboring nodes, calculating the cost of reaching them from the start node. The algorithm selects the neighboring node with the lowest cost and adds it to the list of visited nodes. The process continues until the destination node is reached.</div>
     } else if (selectedAlgorithm === 'astar') {
       visualization = <p className='algo_title'>Visualizing the A* algorithm</p>;
+      description = <div className='desc'>A* starts at the starting node. It evaluates the neighboring nodes by
+      Calculating the cost to reach each neighbor (g(n)),
+      Estimating the cost from each neighbor to the goal (h(n)) using the heuristic function and
+      Combining these costs to determine the total estimated cost (f(n) = g(n) + h(n)). Then, it
+      picks the neighbor with the lowest f(n) value after which it moves to that neighbor and repeats the steps until the end node is reached.
+    </div>
     } else if (selectedAlgorithm === 'bfs') {
       visualization = <p className='algo_title'>Visualizing the BFS algorithm</p>;
+      description = <div className='desc'>Starting at the start node, the BFS algorithm
+      creates a queue to hold nodes to explore. It
+      adds the starting node to the queue.
+      While the queue is not empty: it
+      removes the first node from the queue,
+      marks it as visited.
+      If it's the goal node, it stops and returns the path.
+    It adds all of its unvisited neighbors to the back of the queue.</div>
     }
   
     return (
@@ -235,21 +249,21 @@ export default class PathfindingVisualizer extends Component {
         {/* Display time taken for each algorithm */}
         {bfsVisualized && !bfsRunning && (
           <div>
-            <p style={{ fontFamily:'sans-serif', fontSize: '20px', fontWeight: 'bold' }}>Time taken: {bfsTimeTaken} </p>
+            <p style={{ fontFamily:'sans-serif', fontSize: '20px', fontWeight: 'bold', marginTop: '10px' }}>Time taken: {bfsTimeTaken} </p>
             <button className="newtry" onClick={() => window.location.reload()}>Try different algorithm</button>
           </div>
         )}
   
         {astarVisualized && !astarRunning && (
           <div>
-            <p style={{ fontFamily:'sans-serif',fontSize: '20px', fontWeight: 'bold'}}>Time taken: {astarTimeTaken}</p>
+            <p style={{ fontFamily:'sans-serif',fontSize: '20px', fontWeight: 'bold', marginTop: '10px'}}>Time taken: {astarTimeTaken}</p>
             <button className="newtry" onClick={() => window.location.reload()}>Try different algorithm</button>
           </div>
         )}
   
         {dijkstraVisualized && !dijkstraRunning && (
           <div>
-            <p style={{ fontFamily:'sans-serif',fontSize: '20px', fontWeight: 'bold' }}>Time taken: {dijkstraTimeTaken}</p>
+            <p style={{ fontFamily:'sans-serif',fontSize: '20px', fontWeight: 'bold' , marginTop: '10px'}}>Time taken: {dijkstraTimeTaken}</p>
             <button className="newtry" onClick={() => window.location.reload()}>Try different algorithm</button>
           </div>
         )}
