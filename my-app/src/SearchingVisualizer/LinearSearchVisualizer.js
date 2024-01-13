@@ -24,6 +24,7 @@ const initialArray = useMemo(() => {
   const handleRun = async () => {
     const target = parseInt(searchValue, 10);
     const searchSteps = [];
+    let found = false;
   
     for (let i = 0; i < array.length; i++) {
       searchSteps.push({ index: i, action: 'considered' });
@@ -32,10 +33,15 @@ const initialArray = useMemo(() => {
       await sleep(500); // Adjust the delay time (in milliseconds)
   
       if (array[i] === target) {
+        found=true;
         setFoundIndex(i);
         searchSteps.push({ index: i, action: 'found' });
         break;
       }
+    }
+
+    if (!found) {
+      searchSteps.push({ index: -1, action: 'not-found' });
     }
   
     setSteps([...searchSteps]);
