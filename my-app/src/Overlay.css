@@ -9,10 +9,31 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  
 }
 
 .overlay-content {
   background: white;
   padding: 20px;
+}
+
+.intro{
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 25px;
+  font-weight: bolder;
+  margin-bottom: 15px;
   text-align: center;
+}
+
+.working1{
+  font-family: 'Georgia';
+  font-size: 20px;
+  text-align: left;
+}
+
+.working2{
+  font-family: 'Georgia';
+  font-size: 20px;
+  text-align: left;
+  margin-top:8px;
 }
