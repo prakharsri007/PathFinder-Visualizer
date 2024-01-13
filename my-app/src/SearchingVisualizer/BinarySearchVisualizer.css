@@ -1,0 +1,44 @@
+/* BinarySearchVisualizer.css */
+.binary-search-visualizer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.search-container {
+  margin-bottom: 20px;
+}
+
+.array {
+  display: flex;
+  gap: 5px;
+}
+
+.array-element {
+  padding: 5px;
+  border: 1px solid #ccc;
+}
+
+.found {
+  background-color: #8eff8e;
+}
+
+.not-found {
+  background-color: #ff8e8e;
+}
+
+.middle {
+  background-color: #add8e6;
+}
+
+.steps {
+  display: flex;
+  gap: 10px;
+}
+
+.step {
+  font-weight: bold;
+}
+
+/* You can add more styles as needed */

@@ -1,72 +1,91 @@
-import React, { useState, useEffect, useCallback } from 'react';
+// BubbleSortVisualizer.js
+import React, { useState, useEffect } from 'react';
+import './BubbleSortVisualizer.css';
 
-const SortingVisualizer = () => {
+const BubbleSortVisualizer = () => {
   const [array, setArray] = useState([]);
-
-  const resetArray = useCallback(() => {
-    const newArray = generateRandomArray(20);
-    setArray(newArray);
-  }, []);
+  const [steps, setSteps] = useState([]);
+  const [isSorting, setIsSorting] = useState(false);
 
   useEffect(() => {
-    resetArray();
-  }, [resetArray]);
+    generateNewArray();
+  }, []);
 
-  const generateRandomArray = (size) => {
-    return Array.from({ length: size }, () => Math.floor(Math.random() * 100) + 1);
+  const generateNewArray = () => {
+    const newArray = Array.from({ length: 10 }, () => Math.floor(Math.random() * 100) + 1);
+    setArray(newArray);
+    setSteps([]);
   };
 
-  const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+  const visualizeBubbleSort = async () => {
+    setIsSorting(true);
+    const newArray = [...array];
+    const stepsArray = [];
 
-  const bubbleSort = async () => {
-    const n = array.length;
-    const tempArray = [...array];
-
-    for (let i = 0; i < n - 1; i++) {
-      for (let j = 0; j < n - i - 1; j++) {
-        // Highlight the bars being compared
-        const updatedArray = tempArray.map((value, index) => (index === j || index === j + 1 ? value + 50 : value));
-        setArray([...updatedArray]);
-        await sleep(100);
-
-        if (tempArray[j] > tempArray[j + 1]) {
+    for (let i = 0; i < newArray.length - 1; i++) {
+      for (let j = 0; j < newArray.length - i - 1; j++) {
+        stepsArray.push({ index1: j, index2: j + 1, swap: true });
+        if (newArray[j] > newArray[j + 1]) {
           // Swap elements
-          const temp = tempArray[j];
-          tempArray[j] = tempArray[j + 1];
-          tempArray[j + 1] = temp;
-
-          // Redraw after swapping
-          setArray([...tempArray]);
-          await sleep(100);
+          [newArray[j], newArray[j + 1]] = [newArray[j + 1], newArray[j]];
+          stepsArray.push({ array: [...newArray], swap: true });
+        } else {
+          stepsArray.push({ array: [...newArray], swap: false });
         }
       }
     }
 
-    // Highlight the sorted bars
-    setArray(tempArray.map(value => value + 50));
+    setIsSorting(false);
+    setSteps(stepsArray);
+  };
+
+  const handleRun = () => {
+    visualizeBubbleSort();
+  };
+
+  const handleReset = () => {
+    generateNewArray();
   };
 
   return (
-    <div>
-      <div>
-        <button onClick={resetArray}>Generate New Array</button>
-        <button onClick={bubbleSort}>Bubble Sort</button>
-      </div>
-      <div style={{ display: 'flex' }}>
-        {array.map((value, index) => (
+    <div className="sort-visualizer">
+      <div className="array">
+        {array.map((num, index) => (
           <div
             key={index}
-            style={{
-              height: `${value}%`,
-              width: `${100 / array.length}%`,
-              backgroundColor: '#3498db',
-              border: '1px solid #000',
-            }}
-          ></div>
+            className={`array-element ${isSorting ? 'sorting' : ''}`}
+            style={{ height: `${num}px` }}
+          >
+            {num}
+          </div>
+        ))}
+      </div>
+      <button onClick={handleRun} disabled={isSorting}>
+        Run Bubble Sort
+      </button>
+      <button onClick={handleReset} disabled={isSorting}>
+        Reset
+      </button>
+      <button onClick={generateNewArray} disabled={isSorting}>
+        Generate New Array
+      </button>
+      <div className="steps">
+        {Array.isArray(steps) && steps.length > 0 && steps.map((step, index) => (
+          <div key={index} className="step">
+            {Array.isArray(step.array) && step.array.map((num, i) => (
+              <div
+                key={i}
+                className={`array-element ${step.swap && isSorting ? 'swapping' : ''}`}
+                style={{ height: `${num}px` }}
+              >
+                {num}
+              </div>
+            ))}
+          </div>
         ))}
       </div>
     </div>
   );
 };
 
-export default SortingVisualizer;
+export default BubbleSortVisualizer;
