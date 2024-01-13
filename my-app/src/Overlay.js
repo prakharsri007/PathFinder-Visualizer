@@ -1,6 +1,6 @@
 // Overlay.js
 import React from 'react';
-import './Overlay.css';
+import './overlay.css';
 
 function Overlay({ onClose }) {
   return (
