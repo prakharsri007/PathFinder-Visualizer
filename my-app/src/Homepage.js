@@ -12,7 +12,7 @@ function Homepage({ navigateToPathfindingVisualizer }) {
             <ul class="circles">
 
             <h1 class="title">ALGORITHM VISUALIZER</h1>
-
+            <p class="choose">Select the category of algorithms you want to visualize</p>
             <div className='algo_buttons'>
             <button className="pathalgo" onClick={ navigateToPathfindingVisualizer}>Pathfinding Visualizer</button>
             <button className="searchalgo" >Searching Visualizer</button>

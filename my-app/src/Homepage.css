@@ -34,6 +34,20 @@ body{
     transform: translateX(-50%) translateY(-50%);
 }
 
+.choose{
+    position: absolute;
+    text-align: center;
+    justify-content: center;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 30px;
+    font-style: italic;
+    font-weight: bold;
+    color: #fff;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
 #wrapper{
   position: relative;
  
@@ -165,7 +179,7 @@ body{
 
 .pathalgo{
   margin: 30px;
-  height: 60px;
+  height: 65px;
   font-size: 25px;
   cursor: pointer;
   align-items: center;
@@ -174,13 +188,13 @@ body{
 
 .searchalgo{
   margin: 50px;
-  height: 60px;
+  height: 65px;
   font-size: 25px;
 }
 
 .sortalgo{
   margin: 30px;
-  height: 60px;
+  height: 65px;
   font-size: 25px;
 }
 
@@ -189,7 +203,7 @@ body{
   align-items: center;
   justify-content: center;
   position: absolute;
-  top: 55%;
+  top: 60%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
 }
