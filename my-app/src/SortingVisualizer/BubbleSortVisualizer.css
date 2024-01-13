@@ -1,0 +1,29 @@
+/* Add this to your CSS file */
+div {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+button {
+  margin: 5px;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.container {
+  margin-top: 20px;
+}
+
+.bar {
+  margin: 0 1px;
+  background-color: #3498db;
+  border: 1px solid #000;
+}

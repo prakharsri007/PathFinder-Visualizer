@@ -5,7 +5,7 @@
   import {Routes, Route} from 'react-router-dom';
   import { useNavigate } from 'react-router-dom';
 import LinearSearchVisualizer from './SearchingVisualizer/LinearSearchVisualizer';
-
+import BubbleSortVisualizer from './SortingVisualizer/BubbleSortVisualizer';
   function App(){
     const navigate = useNavigate();
     const navigateToPathfindingVisualizer = () => {
@@ -15,6 +15,10 @@ import LinearSearchVisualizer from './SearchingVisualizer/LinearSearchVisualizer
     const navigateToSearchingVisualizer = () => {
       navigate("/searching-visualizer");
     };
+
+    const navigateToSortingVisualizer = () => {
+      navigate("/sorting-visualizer");
+    };
     
 
     return (
@@ -22,9 +26,11 @@ import LinearSearchVisualizer from './SearchingVisualizer/LinearSearchVisualizer
         <Routes>
       <Route path="/" element={<Homepage navigateToPathfindingVisualizer={navigateToPathfindingVisualizer}
                                         navigateToSearchingVisualizer={navigateToSearchingVisualizer}
+                                        navigateToSortingVisualizer={navigateToSortingVisualizer}
       />} /> {/* Render the Homepage component as the initial page */}
         <Route path="/pathfinding-visualizer" element={<PathfindingVisualizer  /> } />
         <Route path="/searching-visualizer" element={<LinearSearchVisualizer />} />
+        <Route path="/sorting-visualizer" element={<BubbleSortVisualizer />} />
         </Routes>
       </div>
     );
