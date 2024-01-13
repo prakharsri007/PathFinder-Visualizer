@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Node from './Node/Node';
+import Overlay from '../Overlay';
 import {dijkstra, getNodesInShortestPathOrder} from '../algorithms/dijkstra';//dijkstra import
 import { astar } from '../algorithms/astar';                                 //astar import  
 import { bfs } from '../algorithms/bfs';                                     //bfs import
@@ -28,8 +29,13 @@ export default class PathfindingVisualizer extends Component {
       dijkstraRunning: false,
       showButtons: true,
       setShowButtons: true,
+      showOverlay: true,
     };
   }
+
+  handleCloseOverlay = () => {
+    this.setState({ showOverlay: false });
+  };
   
   componentDidMount() {
     const grid = getInitialGrid();
@@ -169,6 +175,7 @@ export default class PathfindingVisualizer extends Component {
 
   render() {
     const { 
+      showOverlay,
       grid, 
       mouseIsPressed, 
       selectedAlgorithm, 
@@ -184,6 +191,8 @@ export default class PathfindingVisualizer extends Component {
       showButtons,
       setShowButtons
     } = this.state;
+
+    
   
     let visualization, description;
     if (selectedAlgorithm === 'dijkstra') {
@@ -211,7 +220,7 @@ export default class PathfindingVisualizer extends Component {
   
     return (
       <>
-      
+      {showOverlay && <Overlay onClose={this.handleCloseOverlay} />}
         {/* Algorithm selection buttons */}
         {showButtons && setShowButtons && (
         <div className="row">
@@ -357,3 +366,4 @@ const getNewGridWithWallToggled = (grid, row, col) => {
   newGrid[row][col] = newNode;
   return newGrid;
 }
+
