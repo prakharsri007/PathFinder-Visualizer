@@ -67,7 +67,9 @@ const initialArray = useMemo(() => {
           {array.map((num, index) => (
             <div
               key={index}
-              className={`array-element ${foundIndex === index ? 'found' : ''}`}
+              className={`array-element ${foundIndex === index ? 'found' : ''} ${
+                steps.findIndex((step) => step.index === index && step.action === 'considered') !== -1 ? 'considered' : ''
+              }`}
             >
               {num}
             </div>

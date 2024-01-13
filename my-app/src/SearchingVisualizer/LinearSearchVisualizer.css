@@ -1,6 +1,14 @@
 /* LinearSearchVisualizer.css */
 .search-visualizer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin-top: 20px;
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
 }
 
 .search-container {
@@ -15,8 +23,8 @@
 }
 
 .array-element {
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -28,13 +36,24 @@
 }
 
 .array-element.found {
-  background-color: #5cb85c;
+  background-color: #4caf50 !important;
 }
 
-input,
+.array-element.considered{
+  background-color: #ffeb3b;
+}
+
+input {
+  margin: 0 10px;
+  padding: 5px;
+  font-size: 16px;
+}
+
 button {
-  margin-left: 10px;
-  height: 30px;
+  padding: 8px;
+  font-size: 16px;
+  margin-right: 10px;
+  cursor: pointer;
 }
 
 .steps {
