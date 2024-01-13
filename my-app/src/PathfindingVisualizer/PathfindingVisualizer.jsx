@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Node from './Node/Node';
-import Overlay from '../Overlay';
+import Overlay from '../overlay';
 import {dijkstra, getNodesInShortestPathOrder} from '../algorithms/dijkstra';//dijkstra import
 import { astar } from '../algorithms/astar';                                 //astar import  
 import { bfs } from '../algorithms/bfs';                                     //bfs import
