@@ -2,7 +2,7 @@
 import React from 'react';
 import './Homepage.css';
 
-function Homepage({ navigateToPathfindingVisualizer }) {
+function Homepage({ navigateToPathfindingVisualizer, navigateToSearchingVisualizer }) {
   return (
     
     <div className="Homepage">
@@ -15,7 +15,7 @@ function Homepage({ navigateToPathfindingVisualizer }) {
             <p class="choose">Select the category of algorithms you want to visualize</p>
             <div className='algo_buttons'>
             <button className="pathalgo" onClick={ navigateToPathfindingVisualizer}>Pathfinding Visualizer</button>
-            <button className="searchalgo" >Searching Visualizer</button>
+            <button className="searchalgo" onClick={ navigateToSearchingVisualizer}>Searching Visualizer</button>
             <button className="sortalgo" >Sorting Visualizer</button>
             </div>
                     <li></li>

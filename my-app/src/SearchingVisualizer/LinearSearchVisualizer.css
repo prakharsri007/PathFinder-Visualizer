@@ -1,0 +1,62 @@
+/* LinearSearchVisualizer.css */
+.search-visualizer {
+  margin-top: 20px;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.array {
+  display: flex;
+  gap: 8px;
+}
+
+.array-element {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #eee;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.array-element.found {
+  background-color: #5cb85c;
+}
+
+input,
+button {
+  margin-left: 10px;
+  height: 30px;
+}
+
+.steps {
+  display: flex;
+  gap: 8px;
+}
+
+.step {
+  padding: 5px;
+  background-color: #eee;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.step.considered {
+  background-color: #5bc0de;
+}
+
+.step.found {
+  background-color: #5cb85c;
+}
+
+.step.not-found {
+  background-color: #d9534f;
+}
