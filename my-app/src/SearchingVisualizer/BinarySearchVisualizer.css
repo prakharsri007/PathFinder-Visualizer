@@ -1,8 +1,41 @@
 /* BinarySearchVisualizer.css */
 .binary-search-visualizer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  margin-top: 20px;
+}
+
+.des1{
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: left;
+  justify-content: left;
+  align-content: left;
+  margin-bottom: 10px;
+  padding: 15px;
+  padding-left: 25px;
+}
+
+
+.des3{
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 20px;
+  font-weight: 500;
+  text-align: left;
+  justify-content: left;
+  margin-bottom: 10px;
+  padding: 15px;
+  padding-left: 25px;
+  font-weight: bold;
+}
+
+
+.des5{
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 22px;
+  font-weight: bolder;
+  text-align: left;
+  justify-content: left;
+  margin-bottom: 40px;
   margin-top: 20px;
 }
 
@@ -10,14 +43,37 @@
   margin-bottom: 20px;
 }
 
+.inputs{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+ }
+
+ .enter{
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 22px;
+  font-style: italic;
+}
+
+.given_array{
+  font-family: 'Georgia';
+  font-size: 22px;
+  margin-top: 30px;
+  font-style: italic;
+  margin-bottom: 50px;
+}
+
 .array {
   display: flex;
   gap: 5px;
+  justify-content: space-between;
 }
 
 .array-element {
   padding: 5px;
   border: 1px solid #ccc;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .found {
