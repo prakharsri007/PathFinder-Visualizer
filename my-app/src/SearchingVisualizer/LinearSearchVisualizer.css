@@ -50,7 +50,7 @@ h2 {
 
 .array {
   display: flex;
-  gap: 5px;
+  gap: 1px;
   margin-top: 45px;
   margin-bottom: 30px;
 }
@@ -66,6 +66,7 @@ h2 {
   font-size: 23px;
   font-weight: bold;
   transition: background-color 0.3s ease;
+  color: white;
 }
 
 .array-element.found {

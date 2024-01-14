@@ -70,10 +70,11 @@
 }
 
 .array-element {
-  padding: 5px;
+  padding: 1px;
   border: 1px solid #ccc;
   justify-content: space-evenly;
   align-items: center;
+  color: white;
 }
 
 .found {
