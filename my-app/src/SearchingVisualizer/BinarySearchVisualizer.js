@@ -8,6 +8,7 @@ function BinarySearchVisualizer() {
   const [steps, setSteps] = useState([]);
   const [foundIndex, setFoundIndex] = useState(null);
   const [foundValue, setFoundValue] = useState(null);
+  const [currentArray, setCurrentArray] = useState([]);
 
   const initialArray = useMemo(() => {
     const newArray = Array.from({ length: 10 }, () => Math.floor(Math.random() * 100));
@@ -16,6 +17,7 @@ function BinarySearchVisualizer() {
 
   useEffect(() => {
     setArray(initialArray);
+    setCurrentArray(initialArray);
     setSearchValue('');
     setSteps([]);
     setFoundIndex(null);
@@ -59,7 +61,7 @@ function BinarySearchVisualizer() {
   const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
   const handleReset = () => {
-    setArray(initialArray);
+    setArray(currentArray);
     setSearchValue('');
     setSteps([]);
     setFoundIndex(null);
@@ -68,6 +70,7 @@ function BinarySearchVisualizer() {
   const handleGenerateArray = () => {
     const newArray = Array.from({ length: 8 }, () => Math.floor(Math.random() * 20) + 1).sort((a, b) => a - b);
     setArray(newArray);
+    setCurrentArray(newArray);
     setSearchValue('');
     setSteps([]);
     setFoundIndex(null);

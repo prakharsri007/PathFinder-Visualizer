@@ -8,6 +8,7 @@ function LinearSearchVisualizer() {
   const [searchValue, setSearchValue] = useState('');
   const [steps, setSteps] = useState([]);
   const [foundIndex, setFoundIndex] = useState(null);
+  const [currentArray, setCurrentArray] = useState([]);
 
 const initialArray = useMemo(() => {
   const newArray = Array.from({ length: 10 }, () => Math.floor(Math.random() * 100));
@@ -16,6 +17,7 @@ const initialArray = useMemo(() => {
 
   useEffect(() => {
     setArray(initialArray);
+    setCurrentArray(initialArray);
     // setSearchValue('');
     // setSteps([]);
     // setFoundIndex(null);
@@ -55,7 +57,7 @@ const initialArray = useMemo(() => {
   const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
   const handleReset = () => {
-    setArray(initialArray);
+    setArray(currentArray);
     setSearchValue('');
     setSteps([]);
     setFoundIndex(null);
@@ -64,6 +66,7 @@ const initialArray = useMemo(() => {
   const handleGenerateArray = () => {
     const newArray = Array.from({ length: 8 }, () => Math.floor(Math.random() * 20) + 1);
     setArray(newArray);
+    setCurrentArray(newArray);
     setSearchValue('');
     setSteps([]);
     setFoundIndex(null);
