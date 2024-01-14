@@ -5,12 +5,18 @@
 
 .array {
   display: flex;
+<<<<<<< HEAD
   justify-content: center;
+=======
+>>>>>>> fa96bd32bb9b00e5bc33e7e8690ac91986f2cb62
   gap: 5px;
   margin-bottom: 20px;
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> fa96bd32bb9b00e5bc33e7e8690ac91986f2cb62
 .array-element {
   background-color: #3498db;
   color: #fff;
@@ -38,6 +44,7 @@
 .step {
   display: flex;
   gap: 5px;
+<<<<<<< HEAD
   justify-content: center; /* Center the content horizontally */
 }
 
@@ -47,4 +54,6 @@
 
 .step.swap span {
   color: green; /* Change the color for swap steps */
+=======
+>>>>>>> fa96bd32bb9b00e5bc33e7e8690ac91986f2cb62
 }
