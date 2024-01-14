@@ -1,29 +1,50 @@
-/* Add this to your CSS file */
-div {
-  box-sizing: border-box;
-}
-
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
-}
-
-button {
-  margin: 5px;
-  padding: 10px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.container {
+.sort-visualizer {
+  text-align: center;
   margin-top: 20px;
 }
 
-.bar {
-  margin: 0 1px;
+.array {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  margin-bottom: 20px;
+}
+
+
+.array-element {
   background-color: #3498db;
-  border: 1px solid #000;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  text-align: center;
+  transition: height 0.3s, background-color 0.3s;
+}
+
+.array-element.sorting {
+  background-color: #e74c3c;
+}
+
+.array-element.swapping {
+  background-color: #2ecc71;
+}
+
+.steps {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 20px;
+}
+
+.step {
+  display: flex;
+  gap: 5px;
+  justify-content: center; /* Center the content horizontally */
+}
+
+.step.considered span {
+  color: blue; /* Change the color for considered steps */
+}
+
+.step.swap span {
+  color: green; /* Change the color for swap steps */
 }
