@@ -65,8 +65,8 @@
 
 .array {
   display: flex;
-  gap: 5px;
-  justify-content: space-between;
+  gap: 110px;
+  justify-content: space-evenly;
 }
 
 .array-element {
