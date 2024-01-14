@@ -1,68 +1,130 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
+import './BubbleSortVisualizer.css';
 
-const SortingVisualizer = () => {
+function BubbleSortVisualizer() {
   const [array, setArray] = useState([]);
+  const [currentSteps, setCurrentSteps] = useState([]);
+  const [allSteps, setAllSteps] = useState([]);
+  const [isSorting, setIsSorting] = useState(false);
 
-  const resetArray = useCallback(() => {
-    const newArray = generateRandomArray(20);
-    setArray(newArray);
+  const initialArray = useMemo(() => {
+    const newArray = Array.from({ length: 10 }, () => Math.floor(Math.random() * 100));
+    return newArray;
   }, []);
 
   useEffect(() => {
-    resetArray();
-  }, [resetArray]);
+    setArray(initialArray);
+    setCurrentSteps([]);
+    setAllSteps([]);
+    setIsSorting(false);
+  }, [initialArray]);
 
-  const generateRandomArray = (size) => {
-    return Array.from({ length: size }, () => Math.floor(Math.random() * 100) + 1);
+  const visualizeSteps = (steps) => {
+    setIsSorting(true);
+
+    steps.forEach((step, index) => {
+      setTimeout(() => {
+        setCurrentSteps([step]);
+
+        if (step.action === 'swap') {
+          // Update the array state after a swap
+          setArray((prevArray) => {
+            const newArray = [...prevArray];
+            [newArray[step.indices[0]], newArray[step.indices[1]]] = [newArray[step.indices[1]], newArray[step.indices[0]]];
+            return newArray;
+          });
+        }
+      }, index * 1000);
+
+      setTimeout(() => {
+        setCurrentSteps([]);
+      }, (index + 1) * 1000);
+    });
+
+    setTimeout(() => {
+      setAllSteps((prevAllSteps) => [...prevAllSteps, steps]);
+      setIsSorting(false);
+    }, steps.length * 1000);
   };
 
-  const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+  const visualizeSort = () => {
+    const arrayCopy = [...array];
+    const sortSteps = [];
 
-  const bubbleSort = async () => {
-    const n = array.length;
-    const tempArray = [...array];
+    for (let i = 0; i < arrayCopy.length - 1; i++) {
+      for (let j = 0; j < arrayCopy.length - i - 1; j++) {
+        sortSteps.push({ indices: [j, j + 1], action: 'considered' });
 
-    for (let i = 0; i < n - 1; i++) {
-      for (let j = 0; j < n - i - 1; j++) {
-        // Highlight the bars being compared
-        const updatedArray = tempArray.map((value, index) => (index === j || index === j + 1 ? value + 50 : value));
-        setArray([...updatedArray]);
-        await sleep(100);
-
-        if (tempArray[j] > tempArray[j + 1]) {
+        if (arrayCopy[j] > arrayCopy[j + 1]) {
           // Swap elements
-          const temp = tempArray[j];
-          tempArray[j] = tempArray[j + 1];
-          tempArray[j + 1] = temp;
-
-          // Redraw after swapping
-          setArray([...tempArray]);
-          await sleep(100);
+          sortSteps.push({ indices: [j, j + 1], action: 'swap' });
+          [arrayCopy[j], arrayCopy[j + 1]] = [arrayCopy[j + 1], arrayCopy[j]];
         }
       }
     }
 
-    // Highlight the sorted bars
-    setArray(tempArray.map(value => value + 50));
+    visualizeSteps(sortSteps);
+  };
+
+  const handleRun = () => {
+    if (!isSorting) {
+      visualizeSort();
+    }
+  };
+
+  const handleReset = () => {
+    setArray(initialArray);
+    setCurrentSteps([]);
+    setAllSteps([]);
+  };
+
+  const handleGenerateArray = () => {
+    const newArray = Array.from({ length: 8 }, () => Math.floor(Math.random() * 20) + 1);
+    setArray(newArray);
+    setCurrentSteps([]);
+    setAllSteps([]);
   };
 
   return (
-    <div>
-      <div>
-        <button onClick={resetArray}>Generate New Array</button>
-        <button onClick={bubbleSort}>Bubble Sort</button>
-      </div>
-      <div style={{ display: 'flex' }}>
-        {array.map((value, index) => (
+    <div className="sort-visualizer">
+      <h2>Bubble Sort</h2>
+      {/* Display array */}
+      <div className="arrays">
+        {array.map((num, index) => (
           <div
             key={index}
-            style={{
-              height: `${value}%`,
-              width: `${100 / array.length}%`,
-              backgroundColor: '#3498db',
-              border: '1px solid #000',
-            }}
-          ></div>
+            className={`arrays-element ${currentSteps.some((step) => step.indices.includes(index)) ? 'considered' : ''}`}
+            style={{ height: `${num * 5}px` }}
+          >
+            {num}
+          </div>
+        ))}
+      </div>
+      <div>
+        <button onClick={handleRun} disabled={isSorting}>
+          Run
+        </button>
+        <button onClick={handleReset} disabled={isSorting}>
+          Reset
+        </button>
+        <button onClick={handleGenerateArray} disabled={isSorting}>
+          Generate New Array
+        </button>
+      </div>
+      {/* Display visualization steps */}
+      <div className="steps1">
+        {allSteps.map((steps, iteration) => (
+          <div key={iteration} className="iteration">
+            Iteration {iteration + 1}:
+            {steps.map((step, index) => (
+              <div key={index} className={`${step.action} step1`}>
+                {step.indices.map((idx) => (
+                  <span key={idx}>{array[idx]}</span>
+                ))}
+                {step.action === 'swap' && '-swap'}
+              </div>
+            ))}
+          </div>
         ))}
       </div>
     </div>
