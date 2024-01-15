@@ -6,6 +6,7 @@ function BubbleSortVisualizer() {
   const [currentSteps, setCurrentSteps] = useState([]);
   const [allSteps, setAllSteps] = useState([]);
   const [isSorting, setIsSorting] = useState(false);
+  const [currentArray, setCurrentArray] = useState([]);
 
   const initialArray = useMemo(() => {
     const newArray = Array.from({ length: 10 }, () => Math.floor(Math.random() * 100));
@@ -14,6 +15,7 @@ function BubbleSortVisualizer() {
 
   useEffect(() => {
     setArray(initialArray);
+    setCurrentArray(initialArray);
     setCurrentSteps([]);
     setAllSteps([]);
     setIsSorting(false);
@@ -73,7 +75,7 @@ function BubbleSortVisualizer() {
   };
 
   const handleReset = () => {
-    setArray(initialArray);
+    setArray(currentArray);
     setCurrentSteps([]);
     setAllSteps([]);
   };
@@ -81,6 +83,7 @@ function BubbleSortVisualizer() {
   const handleGenerateArray = () => {
     const newArray = Array.from({ length: 8 }, () => Math.floor(Math.random() * 20) + 1);
     setArray(newArray);
+    setCurrentArray(newArray);
     setCurrentSteps([]);
     setAllSteps([]);
   };
@@ -88,6 +91,11 @@ function BubbleSortVisualizer() {
   return (
     <div className="sort-visualizer">
       <h2>Bubble Sort</h2>
+<div className='bs_desc'> Bubble Sort algorithm compares each pair of adjacent elements in the list. If the elements are in the wrong order (i.e., the one on the left is greater than the one on the right), they are swapped. The algorithm continues to pass through the list, comparing and swapping adjacent elements, until no more swaps are needed. The process is repeated until the entire list is sorted.
+</div>
+
+<div className='bs'>Let's visualize Bubble Sort!</div>
+
       {/* Display array */}
       <div className="arrays">
         {array.map((num, index) => (

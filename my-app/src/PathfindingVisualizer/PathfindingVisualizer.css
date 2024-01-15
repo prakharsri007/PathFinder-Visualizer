@@ -56,11 +56,11 @@ button{
 }
 
 .node-start-square {
-  background-color: green;
+  background-color: green !important;
 }
 
 .node-end-square {
-  background-color: red;
+  background-color: red !important;
 }
 
 .node-legend {
