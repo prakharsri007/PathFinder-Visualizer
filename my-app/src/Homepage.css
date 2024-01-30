@@ -210,4 +210,71 @@ body{
 
 /* Homepage.css */
 
+/* .robot {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    cursor: pointer;
+  }
   
+  .bubble {
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    display: none; /* Hidden initially */
+  /* }
+  
+  .robot:hover .bubble {
+    display: block; /* Show bubble on hover */
+  /* }
+  
+  .robot-image {
+    /* Your styling for the robot image */
+    /* width: 170px; /* Adjust the width as needed */
+    /* height: 170px; /* Adjust the height as needed */
+    /* border-radius: 50%; /* Assuming your robot image is circular */
+  /* } */ 
+
+  .robot {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    cursor: pointer;
+  }
+  
+  .robot:hover {
+    opacity: 0.8;
+  }
+  
+  .robot-image {
+    width: 170px; /* Adjust the size of the robot image */
+    height: 170px; /* Maintain aspect ratio */
+  }
+  
+  .bubble {
+    position: absolute;
+    top: -20px;
+    right: 70px; /* Adjust the position of the bubble */
+    background-color: #0ff412;
+    color: #000000;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 18px;
+    display: none; /* Initially hide the bubble */
+    width: 80px;
+    height: 20px;
+  }
+  
+  .robot:hover .bubble {
+    display: block; /* Show the bubble on hover */
+  }
+  
+  /* Style for the robot when clicked */
+  .robot-clicked {
+    opacity: 0.5;
+  }

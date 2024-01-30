@@ -1,9 +1,10 @@
-import React, {Component} from 'react';
+import React, {Component } from 'react';
 import Node from './Node/Node';
 import Overlay from '../overlay';
 import {dijkstra, getNodesInShortestPathOrder} from '../algorithms/dijkstra';//dijkstra import
 import { astar } from '../algorithms/astar';                                 //astar import  
-import { bfs } from '../algorithms/bfs';                                     //bfs import
+import { bfs } from '../algorithms/bfs';    //bfs import
+           
 
 
 import './PathfindingVisualizer.css';
@@ -33,14 +34,18 @@ export default class PathfindingVisualizer extends Component {
     };
   }
 
+  
+
   handleCloseOverlay = () => {
     this.setState({ showOverlay: false });
   };
   
   componentDidMount() {
     const grid = getInitialGrid();
-    this.setState({grid});
-  }
+    this.setState({grid});   
+   }
+  
+  
 
   handleMouseDown(row, col) {
     const newGrid = getNewGridWithWallToggled(this.state.grid, row, col);
