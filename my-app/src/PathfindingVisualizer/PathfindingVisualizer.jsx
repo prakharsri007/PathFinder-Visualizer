@@ -4,8 +4,9 @@ import Overlay from '../overlay';
 import {dijkstra, getNodesInShortestPathOrder} from '../algorithms/dijkstra';//dijkstra import
 import { astar } from '../algorithms/astar';                                 //astar import  
 import { bfs } from '../algorithms/bfs';    //bfs import
-           
-
+import astarAudio from 'D:/test/PathFinder-Visualizer/my-app/src/audio/A star audio.mp3';
+import dijkstraaudio from 'D:/test/PathFinder-Visualizer/my-app/src/audio/Dijkstra audio.mp3';
+import bfsaudio from 'D:/test/PathFinder-Visualizer/my-app/src/audio/BFS audio.mp3';
 
 import './PathfindingVisualizer.css';
 
@@ -157,7 +158,13 @@ export default class PathfindingVisualizer extends Component {
     const visitedNodesInOrder = dijkstra(grid, startNode, finishNode);
     const nodesInShortestPathOrder = getNodesInShortestPathOrder(finishNode);
     this.animateDijkstra(visitedNodesInOrder, nodesInShortestPathOrder);
+    const audio = new Audio(dijkstraaudio);
+    audio.play();
+    audio.loop = false;
+    audio.playbackRate = 1.05;
   }
+
+ 
   //A*  function
   visualizeAStar() {
     const { grid } = this.state;
@@ -166,7 +173,13 @@ export default class PathfindingVisualizer extends Component {
     const visitedNodesInOrder = astar(grid, startNode, finishNode); // Call A* algorithm
     const nodesInShortestPathOrder = getNodesInShortestPathOrder(finishNode);
     this.animateDijkstra(visitedNodesInOrder, nodesInShortestPathOrder);
+    const audio = new Audio(astarAudio);
+    audio.play();
+    audio.loop = false;
+    audio.playbackRate = 1.05;
   }
+
+  
   //BFS function
   visualizeBFS() {
     const { grid } = this.state;
@@ -175,9 +188,12 @@ export default class PathfindingVisualizer extends Component {
     const visitedNodesInOrder = bfs(grid, startNode, finishNode); // Call BFS algorithm
     const nodesInShortestPathOrder = getNodesInShortestPathOrder(finishNode);
     this.animateBFS(visitedNodesInOrder, nodesInShortestPathOrder);
+    const audio = new Audio(bfsaudio);
+    audio.play();
+    audio.loop = false;
+    audio.playbackRate = 1.05;
   }
  
-
   render() {
     const { 
       showOverlay,
