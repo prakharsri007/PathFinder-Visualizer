@@ -15,6 +15,7 @@
 .overlay-content {
   background: white;
   padding: 20px;
+  position: relative;
 }
 
 .intro{
@@ -31,9 +32,50 @@
   text-align: left;
 }
 
+
+
 .working2{
   font-family: 'Georgia';
   font-size: 20px;
   text-align: left;
   margin-top:8px;
+}
+
+.robot {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  cursor: pointer;
+}
+
+.robot:hover {
+  opacity: 0.8;
+}
+
+.robot-image {
+  width: 170px; /* Adjust the size of the robot image */
+  height: 170px; /* Maintain aspect ratio */
+}
+
+.bubble {
+  position: absolute;
+  top: -20px;
+  right: 70px; /* Adjust the position of the bubble */
+  background-color: #0ff412;
+  color: #000000;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 18px;
+  display: none; /* Initially hide the bubble */
+  width: 80px;
+  height: 20px;
+}
+
+.robot:hover .bubble {
+  display: block; /* Show the bubble on hover */
+}
+
+/* Style for the robot when clicked */
+.robot-clicked {
+  opacity: 0.5;
 }
