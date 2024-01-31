@@ -52,21 +52,21 @@
   opacity: 0.8;
 }
 
-.robot-image {
-  width: 170px; /* Adjust the size of the robot image */
-  height: 170px; /* Maintain aspect ratio */
+.robot-image-new {
+  width: 190px; /* Adjust the size of the robot image */
+  height: 190px; /* Maintain aspect ratio */
 }
 
-.bubble {
+.bubble-new {
   position: absolute;
   top: -20px;
   right: 70px; /* Adjust the position of the bubble */
-  background-color: #0ff412;
+  background-color: #e4eb18;
   color: #000000;
   border-radius: 5px;
   padding: 5px 10px;
   font-size: 18px;
-  display: none; /* Initially hide the bubble */
+  display: block; /* Initially hide the bubble */
   width: 80px;
   height: 20px;
 }

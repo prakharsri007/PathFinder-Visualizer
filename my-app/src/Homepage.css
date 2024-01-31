@@ -265,7 +265,7 @@ body{
     border-radius: 5px;
     padding: 5px 10px;
     font-size: 18px;
-    display: none; /* Initially hide the bubble */
+    display: block; /* Initially hide the bubble */
     width: 80px;
     height: 20px;
   }

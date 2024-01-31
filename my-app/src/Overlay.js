@@ -59,11 +59,11 @@ All of the algorithms on this application are adapted for a 2D grid, where 90 de
         <div className={`robot ${isRobotClicked ? 'robot-clicked' : ''}`}
                     onClick={handleClickRobot}
                     >
-                      <div className="bubble">Click Me!</div>
+                      <div className="bubble-new">Click Me!</div>
               <img
                 src="https://cdn4.iconfinder.com/data/icons/toys-childhood-12/60/robot__face__toy__kids__play-512.png" // Replace with the actual URL of your robot image
                 alt="Robot Face"
-                className="robot-image"
+                className="robot-image-new"
               /> 
                     </div>
 
