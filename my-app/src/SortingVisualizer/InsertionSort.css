@@ -1,9 +1,11 @@
+/* InsertionSortVisualizer.css */
+
 .sort-visualizer {
   text-align: center;
   margin-top: 20px;
 }
 
-.bs_desc{
+.is_desc {
   text-align: left;
   font-family: 'Georgia';
   font-size: 20px;
@@ -11,7 +13,7 @@
   padding: 15px;
 }
 
-.bs{
+.is {
   text-align: center;
   font-size: 22px;
   font-family: Georgia, 'Times New Roman', Times, serif;
@@ -19,13 +21,13 @@
   margin-bottom: 25px;
 }
 
-.bs-arrays {
+.is-arrays {
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
 }
 
-.bs-arrays-element {
+.is-arrays-element {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -38,17 +40,12 @@
   font-weight: bold;
 }
 
-.bs-arrays-element.considered {
+.is-arrays-element.considered {
   background-color: #f2f929; /* Blue background color */
   border-color: #02285e; /* Blue border color */
 }
 
-.bs-array-element.swap {
-  background-color: #d9534f; /* Red background color */
-  border-color: #d43f3a; /* Red border color */
-}
-
-.bs-steps1 {
+.is-steps1 {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -56,22 +53,34 @@
   margin-top: 20px;
 }
 
-.bs-iteration {
+.is-iteration {
   margin-bottom: 10px;
 }
 
-.bs-step1 {
+.is-array-element.swap {
+  background-color: #d9534f; /* Red background color */
+  border-color: #d43f3a; /* Red border color */
+}
+
+.is-step1 {
   display: flex;
   gap: 5px;
 }
 
-.bs-button1,.bs-button2,.bs-button3 {
-  margin: 5px;
-  padding: 10px;
-  font-size: 14px;
+.isb1,.isb2,.isb3 {
+  background-color: lightskyblue;
+  height: 40px;
+  width: 350px;
+  margin: 10px;
+  font-family: 'Geaorgia';
+  color: black;
+  font-weight: bold;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
-.bs-button1:disabled,.bs-button2:disabled,.bs-button3:disabled {
+.isb1:disabled, .isb2:disabled,.isb2:disabled {
   background-color: lightgray;
   cursor: not-allowed;
 }

@@ -1,12 +1,14 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import './BubbleSortVisualizer.css';
+import bubbleSortAudio from 'D:/test/PathFinder-Visualizer/my-app/src/audio/BubbleSort audio.mp3';
 
 function BubbleSortVisualizer() {
   const [array, setArray] = useState([]);
   const [currentSteps, setCurrentSteps] = useState([]);
-  const [allSteps, setAllSteps] = useState([]);
   const [isSorting, setIsSorting] = useState(false);
   const [currentArray, setCurrentArray] = useState([]);
+  const [audioPlayed, setAudioPlayed] = useState(false); 
+  const audioRef = useRef(null);
 
   const initialArray = useMemo(() => {
     const newArray = Array.from({ length: 10 }, () => Math.floor(Math.random() * 100));
@@ -17,9 +19,16 @@ function BubbleSortVisualizer() {
     setArray(initialArray);
     setCurrentArray(initialArray);
     setCurrentSteps([]);
-    setAllSteps([]);
     setIsSorting(false);
+    setAudioPlayed(false);
   }, [initialArray]);
+
+  useEffect(() => {
+    if (isSorting && !audioPlayed) {
+      playAudio();
+      setAudioPlayed(true);
+    }
+  }, [isSorting, audioPlayed]);
 
   const visualizeSteps = (steps) => {
     setIsSorting(true);
@@ -44,9 +53,16 @@ function BubbleSortVisualizer() {
     });
 
     setTimeout(() => {
-      setAllSteps((prevAllSteps) => [...prevAllSteps, steps]);
       setIsSorting(false);
     }, steps.length * 1000);
+  };
+
+  const playAudio = () => {
+    const audio = audioRef.current;
+    if (audio) {
+      audio.currentTime = 0;
+      audio.play();
+    }
   };
 
   const visualizeSort = () => {
@@ -68,16 +84,17 @@ function BubbleSortVisualizer() {
     visualizeSteps(sortSteps);
   };
 
+  
   const handleRun = () => {
     if (!isSorting) {
       visualizeSort();
     }
-  };
+  };  
 
   const handleReset = () => {
     setArray(currentArray);
     setCurrentSteps([]);
-    setAllSteps([]);
+   setAudioPlayed(false); ;
   };
 
   const handleGenerateArray = () => {
@@ -85,7 +102,7 @@ function BubbleSortVisualizer() {
     setArray(newArray);
     setCurrentArray(newArray);
     setCurrentSteps([]);
-    setAllSteps([]);
+    setAudioPlayed(false); 
   };
 
   return (
@@ -97,11 +114,11 @@ function BubbleSortVisualizer() {
 <div className='bs'>Let's visualize Bubble Sort!</div>
 
       {/* Display array */}
-      <div className="arrays">
+      <div className="bs-arrays">
         {array.map((num, index) => (
           <div
             key={index}
-            className={`arrays-element ${currentSteps.some((step) => step.indices.includes(index)) ? 'considered' : ''}`}
+            className={`bs-arrays-element ${currentSteps.some((step) => step.indices.includes(index)) ? 'considered' : ''}`}
             style={{ height: `${num * 5}px` }}
           >
             {num}
@@ -109,32 +126,19 @@ function BubbleSortVisualizer() {
         ))}
       </div>
       <div>
-        <button onClick={handleRun} disabled={isSorting}>
+        <button className="bs-button1" onClick={handleRun} disabled={isSorting}>
           Run
         </button>
-        <button onClick={handleReset} disabled={isSorting}>
+        <button className="bs-button2" onClick={handleReset} disabled={isSorting}>
           Reset
         </button>
-        <button onClick={handleGenerateArray} disabled={isSorting}>
+        <button className="bs-button3" onClick={handleGenerateArray} disabled={isSorting}>
           Generate New Array
         </button>
       </div>
       {/* Display visualization steps */}
-      <div className="steps1">
-        {allSteps.map((steps, iteration) => (
-          <div key={iteration} className="iteration">
-            Iteration {iteration + 1}:
-            {steps.map((step, index) => (
-              <div key={index} className={`${step.action} step1`}>
-                {step.indices.map((idx) => (
-                  <span key={idx}>{array[idx]}</span>
-                ))}
-                {step.action === 'swap' && '-swap'}
-              </div>
-            ))}
-          </div>
-        ))}
-      </div>
+     
+      <audio ref={audioRef} src={bubbleSortAudio} loop={false}/>
     </div>
   );
 }
