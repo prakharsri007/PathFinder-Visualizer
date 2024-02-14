@@ -1,6 +1,7 @@
 // LinearSearchVisualizer.js
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo , useRef} from 'react';
 import './LinearSearchVisualizer.css';
+import LinearchSearchAudio from 'D:/test/PathFinder-Visualizer/my-app/src/audio/Linear Search audio.mp3';
 
 function LinearSearchVisualizer() {
   
@@ -9,6 +10,7 @@ function LinearSearchVisualizer() {
   const [steps, setSteps] = useState([]);
   const [foundIndex, setFoundIndex] = useState(null);
   const [currentArray, setCurrentArray] = useState([]);
+  const audioRef = useRef(null);
 
 const initialArray = useMemo(() => {
   const newArray = Array.from({ length: 10 }, () => Math.floor(Math.random() * 100));
@@ -23,7 +25,17 @@ const initialArray = useMemo(() => {
     // setFoundIndex(null);
   }, [initialArray]);
 
+  const playAudio = () => {
+    const audio = audioRef.current;
+    if (audio) {
+      audio.currentTime = 0;
+      audio.play();
+    }
+  };
+
+
   const handleRun = async () => {
+    playAudio();
     const target = parseInt(searchValue, 10);
     const searchSteps = [];
     let found = false;
@@ -33,7 +45,7 @@ const initialArray = useMemo(() => {
       searchSteps.push({ index: i, action: 'considered' });
       setSteps([...searchSteps]); // Update the steps to trigger re-render
   
-      await sleep(700); // Adjust the delay time (in milliseconds)
+      await sleep(1400); // Adjust the delay time (in milliseconds)
   
       if (array[i] === target) {
         ind = i;
@@ -116,6 +128,7 @@ const initialArray = useMemo(() => {
           </div>
         ))}
       </div>
+      <audio ref={audioRef} src={LinearchSearchAudio} loop={false}/>
     </div>
   );
 }
