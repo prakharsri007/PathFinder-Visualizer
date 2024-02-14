@@ -4,7 +4,7 @@ import './InsertionSort.css';
 function InsertionSortVisualizer() {
   const [array, setArray] = useState([]);
   const [currentSteps, setCurrentSteps] = useState([]);
-  const [allSteps, setAllSteps] = useState([]);
+  // const [allSteps, setAllSteps] = useState([]);
   const [isSorting, setIsSorting] = useState(false);
   const [currentArray, setCurrentArray] = useState([]);
 
@@ -17,7 +17,7 @@ function InsertionSortVisualizer() {
     setArray(initialArray);
     setCurrentArray(initialArray);
     setCurrentSteps([]);
-    setAllSteps([]);
+    // setAllSteps([]);
     setIsSorting(false);
   }, [initialArray]);
 
@@ -47,7 +47,7 @@ function InsertionSortVisualizer() {
     });
 
     setTimeout(() => {
-      setAllSteps((prevAllSteps) => [...prevAllSteps, steps]);
+      // setAllSteps((prevAllSteps) => [...prevAllSteps, steps]);
       setIsSorting(false);
     }, steps.length * 2000);
   };
@@ -81,7 +81,7 @@ function InsertionSortVisualizer() {
   const handleReset = () => {
     setArray(currentArray);
     setCurrentSteps([]);
-    setAllSteps([]);
+    // setAllSteps([]);
   };
 
   const handleGenerateArray = () => {
@@ -89,7 +89,7 @@ function InsertionSortVisualizer() {
     setArray(newArray);
     setCurrentArray(newArray);
     setCurrentSteps([]);
-    setAllSteps([]);
+    // setAllSteps([]);
   };
 
   return (
@@ -125,22 +125,8 @@ function InsertionSortVisualizer() {
           Generate New Array
         </button>
       </div>
-      {/* Display visualization steps */}
-      <div className="is-steps1">
-        {allSteps.map((steps, iteration) => (
-          <div key={iteration} className="is-iteration">
-            Iteration {iteration + 1}:
-            {steps.map((step, index) => (
-              <div key={index} className={`${step.action} is-step1`}>
-                {step.indices.map((idx) => (
-                  <span key={idx}>{array[idx]}</span>
-                ))}
-                {step.action === 'swap' && '-swap'}
-              </div>
-            ))}
-          </div>
-        ))}
-      </div>
+     
+      
     </div>
   );
 }

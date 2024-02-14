@@ -1,6 +1,7 @@
 // BinarySearchVisualizer.js
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import './BinarySearchVisualizer.css';
+import BinarySearchAudio from 'D:/test/PathFinder-Visualizer/my-app/src/audio/Binary Search works .mp3';
 
 function BinarySearchVisualizer() {
   const [array, setArray] = useState([]);
@@ -9,6 +10,7 @@ function BinarySearchVisualizer() {
   const [foundIndex, setFoundIndex] = useState(null);
   const [foundValue, setFoundValue] = useState(null);
   const [currentArray, setCurrentArray] = useState([]);
+  const audioRef = useRef(null);
 
   const initialArray = useMemo(() => {
     const newArray = Array.from({ length: 10 }, () => Math.floor(Math.random() * 100));
@@ -24,7 +26,17 @@ function BinarySearchVisualizer() {
     setFoundValue(null);
   }, [initialArray]);
 
+  
+  const playAudio = () => {
+    const audio = audioRef.current;
+    if (audio) {
+      audio.currentTime = 0;
+      audio.play();
+    }
+  };
+
   const handleRun = async () => {
+    playAudio();
     const target = parseInt(searchValue, 10);
     const searchSteps = [];
     let found = false;
@@ -133,6 +145,7 @@ function BinarySearchVisualizer() {
           </div>
         ))}
       </div>
+      <audio ref={audioRef} src={BinarySearchAudio} loop={false}/>
     </div>
   );
 }

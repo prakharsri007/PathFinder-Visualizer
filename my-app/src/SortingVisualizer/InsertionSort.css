@@ -80,7 +80,7 @@
   cursor: pointer;
 }
 
-.isb1:disabled, .isb2:disabled,.isb2:disabled {
+.isb1:disabled, .isb2:disabled,.isb3:disabled {
   background-color: lightgray;
   cursor: not-allowed;
 }
